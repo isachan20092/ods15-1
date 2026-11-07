@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Um projeto educativo sobre a ODS 15, a biodiversidade e a preservação da vida terrestre em Ribeirão Pires.">
+<title>ODS 15 — Fauna e Flora</title>
+
+<style>
+:root{
+ --dark:#17452b;
+ --green:#2e7d32;
+ --light:#66bb6a;
+ --pale:#eaf4e9;
+ --yellow:#fbc02d;
+ --text:#203020;
+ --muted:#526452;
+ --white:#fff;
+ --shadow:0 10px 28px rgba(23,69,43,.10);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+html{scroll-behavior:smooth}
+
+body{
+ font-family:"Segoe UI",Arial,sans-serif;
+ background:#f7faf6;
+ color:var(--text);
+ line-height:1.6;
+}
+
+::selection{background:#c8e6c9;color:var(--dark)}
+
+a:focus-visible,
+button:focus-visible{
+ outline:3px solid var(--yellow);
+ outline-offset:4px;
+}
+
+.skip-link{
+ position:fixed;
+ top:-100px;
+ left:1rem;
+ z-index:30;
+ padding:.7rem 1rem;
+ border-radius:0 0 10px 10px;
+ background:var(--yellow);
+ color:var(--dark);
+ font-weight:700;
+}
+
+.skip-link:focus{
+ top:0;
+}
+
+section{
+ padding:clamp(3.5rem,7vw,5.5rem) 1.5rem;
+ scroll-margin-top:5rem;
+}
+
+.container{
+ max-width:1120px;
+ margin:auto;
+}
+
+h2{
+ color:var(--dark);
+ font-size:clamp(1.8rem,3.5vw,2.5rem);
+ line-height:1.2;
+ margin-bottom:1rem;
+}
+
+.lead{
+ color:var(--muted);
+ max-width:750px;
+ margin-bottom:2rem;
+ font-size:1.05rem;
+}
+
+.tag{
+ display:inline-block;
+ background:var(--pale);
+ color:var(--green);
+ padding:.3rem .9rem;
+ border-radius:20px;
+ font-size:.8rem;
+ font-weight:bold;
+ letter-spacing:.04em;
+ margin-bottom:1rem;
+}
+
+/* MENU */
+
+nav{
+ position:sticky;
+ top:0;
+ z-index:10;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:1.5rem;
+ padding:.9rem max(1.5rem,calc((100vw - 1120px)/2));
+ background:rgba(23,69,43,.97);
+ box-shadow:0 2px 14px #0002;
+ backdrop-filter:blur(10px);
+}
+
+.brand{
+ color:white;
+ text-decoration:none;
+ font-weight:bold;
+}
+
+.badge{
+ background:var(--yellow);
+ color:var(--dark);
+ padding:.2rem .6rem;
+ border-radius:20px;
+ margin-right:.5rem;
+}
+
+.links{
+ display:flex;
+ align-items:center;
+ gap:clamp(.8rem,2vw,1.5rem);
+}
+
+.links a{
+ color:#fff;
+ text-decoration:none;
+ font-size:.92rem;
+ transition:color .2s ease;
+}
+
+.links a:hover,
+.links a:focus-visible{
+ color:var(--yellow);
+}
+
+.menu-toggle{
+ display:none;
+ border:1px solid #ffffff70;
+ color:white;
+ background:transparent;
+ border-radius:10px;
+ padding:.45rem .7rem;
+ font:inherit;
+ font-size:1.2rem;
+ line-height:1;
+ cursor:pointer;
+}
+
+/* HERO */
+
+.hero{
+ min-height:90vh;
+ min-height:min(760px,90svh);
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ align-items:center;
+ text-align:center;
+ padding:5rem 1.5rem;
+ color:white;
+ background:
+  radial-gradient(ellipse at 12% 85%,#66bb6a55,transparent 36%),
+  radial-gradient(ellipse at 88% 18%,#fbc02d22,transparent 30%),
+  linear-gradient(135deg,#123b26,#2e7d32);
+}
+
+.hero h1{
+ font-size:clamp(2.3rem,5vw,4rem);
+ max-width:800px;
+ line-height:1.1;
+ letter-spacing:-.035em;
+}
+
+.hero h1 span{
+ color:var(--yellow);
+}
+
+.hero p{
+ max-width:700px;
+ margin:1.5rem 0 2rem;
+ color:#fff;
+ font-size:1.08rem;
+}
+
+.buttons{
+ display:flex;
+ gap:1rem;
+ flex-wrap:wrap;
+ justify-content:center;
+}
+
+.btn{
+ padding:.8rem 1.7rem;
+ border-radius:30px;
+ text-decoration:none;
+ font-weight:bold;
+ transition:transform .2s ease,box-shadow .2s ease,background .2s ease;
+}
+
+.primary{
+ background:var(--yellow);
+ color:var(--dark);
+ box-shadow:0 6px 16px #0002;
+}
+
+.outline{
+ border:2px solid white;
+ color:white;
+}
+
+.btn:hover{
+ transform:translateY(-2px);
+ box-shadow:0 8px 20px #0003;
+}
+
+/* CARDS */
+
+.grid{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+ gap:1.3rem;
+}
+
+.card{
+ background:white;
+ padding:1.6rem;
+ border-radius:16px;
+ box-shadow:var(--shadow);
+ border-left:5px solid var(--light);
+ transition:transform .25s ease,box-shadow .25s ease;
+}
+
+.card:hover{
+ transform:translateY(-4px);
+ box-shadow:0 14px 30px rgba(23,69,43,.15);
+}
+
+.icon{
+ font-size:2rem;
+ margin-bottom:.5rem;
+}
+
+.card h3{
+ color:var(--dark);
+ margin-bottom:.4rem;
+}
+
+.card p{
+ color:var(--muted);
+ font-size:.9rem;
+}
+
+/* FAUNA E FLORA */
+
+#fauna{
+ background:var(--pale);
+}
+
+.species{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:1rem;
+}
+
+.animal{
+ background:white;
+ border-radius:16px;
+ overflow:hidden;
+ box-shadow:var(--shadow);
+ border:1px solid #dce9dc;
+ transition:transform .25s ease,box-shadow .25s ease;
+}
+
+.animal:hover{
+ transform:translateY(-4px);
+ box-shadow:0 14px 30px rgba(23,69,43,.15);
+}
+
+.species-visual{
+ height:145px;
+ display:grid;
+ place-items:center;
+ font-size:4rem;
+ background:var(--species-bg,linear-gradient(135deg,#d8efda,#a6d5ad));
+}
+
+.species-visual span{
+ filter:drop-shadow(0 8px 8px #173e2a25);
+}
+
+.visual-jaguar{--species-bg:linear-gradient(135deg,#f3d89a,#d99a4c)}
+.visual-mico{--species-bg:linear-gradient(135deg,#f2d5a6,#c98948)}
+.visual-arara{--species-bg:linear-gradient(135deg,#b9e7da,#53aa91)}
+.visual-tamandua{--species-bg:linear-gradient(135deg,#e3d2bd,#aa8d70)}
+.visual-palmito{--species-bg:linear-gradient(135deg,#cce7bb,#79b77a)}
+.visual-ipe{--species-bg:linear-gradient(135deg,#f8e6a4,#e9be4d)}
+
+.animal-featured{
+ grid-column:1 / -1;
+ display:grid;
+ grid-template-columns:1.05fr .95fr;
+ min-height:280px;
+ background:linear-gradient(120deg,#123b26,#1b5435);
+ border:2px solid #d6b85c;
+ box-shadow:0 18px 42px rgba(23,69,43,.22);
+}
+
+.animal-featured .species-visual{
+ position:relative;
+ height:100%;
+ min-height:280px;
+ overflow:hidden;
+ background:
+  radial-gradient(circle at 50% 39%,#f7d66f 0 2%,#d3a93f 2.5% 12%,transparent 12.5%),
+  radial-gradient(ellipse at 50% 100%,#3c8855 0 18%,transparent 18.5%),
+  linear-gradient(145deg,#0b281b,#1c5637 58%,#0b2c20);
+}
+
+.animal-featured .species-visual::before{
+ content:"";
+ position:absolute;
+ width:210px;
+ height:210px;
+ border:1px solid #f7d66f88;
+ border-radius:50%;
+ box-shadow:0 0 42px #f7d66f30,inset 0 0 35px #f7d66f20;
+}
+
+.animal-featured .species-visual span:first-child{
+ position:relative;
+ z-index:1;
+ font-size:clamp(6rem,12vw,8rem);
+ filter:drop-shadow(0 12px 14px #0008);
+}
+
+.harpy-label{
+ position:absolute;
+ top:1rem;
+ left:1rem;
+ z-index:2;
+ padding:.4rem .7rem;
+ border:1px solid #f7d66f99;
+ border-radius:30px;
+ background:#0b281bd9;
+ color:#f7d66f;
+ font-size:.68rem;
+ font-weight:800;
+ letter-spacing:.1em;
+}
+
+.animal-featured > div:not(.species-visual){
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ padding:clamp(1.5rem,4vw,3rem);
+}
+
+.animal.animal-featured small{
+ color:#f7d66f;
+}
+
+.animal.animal-featured h3{
+ color:#fff;
+ font-size:clamp(1.7rem,3vw,2.35rem);
+ line-height:1.15;
+ margin:.5rem 0;
+}
+
+.animal.animal-featured .scientific-name{
+ color:#f7d66f;
+ font-size:.9rem;
+ margin-bottom:.8rem;
+}
+
+.animal.animal-featured p:not(.scientific-name){
+ color:#e0ece2;
+ font-size:1rem;
+ max-width:460px;
+}
+
+.species-note{
+ margin-top:1rem;
+ color:var(--muted);
+ font-size:.88rem;
+}
+
+.animal > div:not(.species-visual){
+ padding:1rem 1.1rem 1.25rem;
+}
+
+.animal small{
+ display:inline-block;
+ color:var(--green);
+ font-weight:bold;
+ font-size:.72rem;
+ letter-spacing:.06em;
+}
+
+.animal h3{
+ color:var(--dark);
+ margin:.3rem 0;
+}
+
+.animal p{
+ color:var(--muted);
+ font-size:.85rem;
+}
+
+/* RIBEIRÃO PIRES */
+
+.city{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:2rem;
+ align-items:center;
+}
+
+.city-visual{
+ min-height:350px;
+ position:relative;
+ display:flex;
+ align-items:flex-end;
+ overflow:hidden;
+ padding:2rem;
+ border-radius:20px;
+ color:white;
+ background:
+  radial-gradient(circle at 76% 22%,#fbc02d 0 7%,transparent 7.5%),
+  linear-gradient(180deg,#a7d7bc 0%,#d9efcf 48%,#5d9c61 49%,#245b38 100%);
+ box-shadow:var(--shadow);
+}
+
+.city-visual::before,
+.city-visual::after{
+ content:"";
+ position:absolute;
+ bottom:28%;
+ width:48%;
+ height:48%;
+ background:#23643d;
+ clip-path:polygon(50% 0,100% 100%,0 100%);
+ filter:drop-shadow(0 8px 5px #153e2a35);
+}
+
+.city-visual::before{
+ left:5%;
+ transform:scale(1.1);
+}
+
+.city-visual::after{
+ right:4%;
+ bottom:31%;
+ transform:scale(.85);
+ background:#34784a;
+}
+
+.city-visual-caption{
+ position:relative;
+ z-index:1;
+ max-width:340px;
+ padding:1rem 1.2rem;
+ border:1px solid #ffffff50;
+ border-radius:14px;
+ background:#123b26d9;
+ backdrop-filter:blur(8px);
+}
+
+.city-visual-caption strong{
+ display:block;
+ color:var(--yellow);
+ font-size:1.1rem;
+ margin-bottom:.25rem;
+}
+
+.city img{
+ width:100%;
+ border-radius:16px;
+}
+
+.box{
+ background:var(--pale);
+ padding:2rem;
+ border-left:5px solid var(--green);
+ border-radius:16px;
+ box-shadow:var(--shadow);
+}
+
+.box h3{
+ color:var(--dark);
+ margin-bottom:.7rem;
+}
+
+.box p,
+.box li{
+ color:var(--muted);
+ font-size:.95rem;
+}
+
+.box ul{
+ padding-left:1.2rem;
+ margin-top:1rem;
+}
+
+/* FOOTER */
+
+footer{
+ background:var(--dark);
+ color:#fffc;
+ text-align:center;
+ padding:2rem;
+}
+
+footer strong{
+ color:var(--yellow);
+}
+
+.footer-link{
+ display:inline-block;
+ margin-top:1.1rem;
+ color:#fff;
+ font-weight:600;
+ text-decoration:none;
+ border-bottom:1px solid #ffffff70;
+ transition:color .2s ease,border-color .2s ease;
+}
+
+.footer-link:hover{
+ color:var(--yellow);
+ border-color:var(--yellow);
+}
+
+/* RESPONSIVO */
+
+@media(max-width:900px){
+ .species{
+  grid-template-columns:repeat(2,1fr);
+ }
+
+ .city{
+  grid-template-columns:1fr;
+ }
+}
+
+@media(max-width:600px){
+ nav{
+  position:sticky;
+  padding:.8rem 1rem;
+ }
+
+ .menu-toggle{
+  display:block;
+ }
+
+ .links{
+  display:none;
+  position:absolute;
+  top:100%;
+  left:0;
+  right:0;
+  flex-direction:column;
+  align-items:stretch;
+  gap:0;
+  padding:.45rem 1rem 1rem;
+  background:var(--dark);
+  box-shadow:0 10px 14px #0002;
+ }
+
+ .links.is-open{
+  display:flex;
+ }
+
+ .links a{
+  padding:.75rem .25rem;
+  border-bottom:1px solid #ffffff20;
+ }
+
+ .links a:last-child{
+  border-bottom:0;
+ }
+
+ .hero{
+  min-height:78svh;
+  padding:4rem 1.2rem;
+ }
+
+ .hero .tag{
+  font-size:.7rem;
+ }
+
+ .hero p{
+  font-size:1rem;
+ }
+
+ .city-visual{
+  min-height:280px;
+  padding:1.2rem;
+ }
+
+ .city-visual-caption{
+  font-size:.9rem;
+ }
+
+ section{
+  padding:3.5rem 1rem;
+ }
+
+ .species{
+  grid-template-columns:1fr;
+ }
+
+ .animal-featured{
+  grid-template-columns:1fr;
+ }
+
+ .animal-featured .species-visual{
+  min-height:220px;
+ }
+
+ h2{
+  font-size:1.8rem;
+ }
+
+ .buttons{
+  flex-direction:column;
+  width:100%;
+  max-width:280px;
+ }
+
+ .btn{
+  text-align:center;
+ }
+}
+
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}
+ *,
+ *::before,
+ *::after{
+  transition:none!important;
+  animation:none!important;
+ }
+}
+</style>
+</head>
+
+<body>
+
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<!-- MENU -->
+
+<nav aria-label="Navegação principal">
+
+<a class="brand" href="#inicio">
+ <span class="badge">ODS 15</span>
+ Vida Terrestre
+</a>
+
+<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-links" aria-label="Abrir menu">
+ ☰
+</button>
+
+<div class="links" id="menu-links">
+ <a href="#sobre">ODS 15</a>
+ <a href="#fauna">Fauna e Flora</a>
+ <a href="#ameacas">Ameaças</a>
+ <a href="#cidade">Ribeirão Pires</a>
+</div>
+
+</nav>
+
+
+<!-- INÍCIO -->
+
+<header class="hero" id="inicio">
+
+<span class="tag">OBJETIVO DE DESENVOLVIMENTO SUSTENTÁVEL 15</span>
+
+<h1>
+ Proteger a <span>fauna, a flora</span> e a vida terrestre
+</h1>
+
+<p>
+ A natureza é formada por uma enorme rede de animais, plantas,
+ florestas e outros seres vivos. Preservar essa biodiversidade
+ é essencial para o equilíbrio do planeta e para a nossa própria vida.
+</p>
+
+<div class="buttons">
+ <a class="btn primary" href="#sobre">Conhecer a ODS 15</a>
+ <a class="btn outline" href="#fauna">Explorar a biodiversidade</a>
+</div>
+
+</header>
+
+<main id="conteudo">
+
+<!-- ODS 15 -->
+
+<section id="sobre">
+
+<div class="container">
+
+<span class="tag">SOBRE A ODS 15</span>
+
+<h2>O que é a ODS 15?</h2>
+
+<p class="lead">
+ A ODS 15 — Vida Terrestre — tem como objetivo proteger,
+ restaurar e promover o uso sustentável dos ecossistemas terrestres,
+ combater a degradação ambiental e impedir a perda da biodiversidade.
+</p>
+
+<div class="grid">
+
+<article class="card">
+ <div class="icon">🌳</div>
+ <h3>Proteger as florestas</h3>
+ <p>
+  Preservar áreas florestais significa proteger milhares de espécies
+  que dependem desses ambientes.
+ </p>
+</article>
+
+<article class="card">
+ <div class="icon">🐾</div>
+ <h3>Preservar os animais</h3>
+ <p>
+  A conservação da fauna ajuda a manter o equilíbrio dos ecossistemas.
+ </p>
+</article>
+
+<article class="card">
+ <div class="icon">🌱</div>
+ <h3>Valorizar a flora</h3>
+ <p>
+  Plantas fornecem alimento, abrigo, oxigênio e contribuem para
+  o equilíbrio ambiental.
+ </p>
+</article>
+
+<article class="card">
+ <div class="icon">🌎</div>
+ <h3>Conservar a biodiversidade</h3>
+ <p>
+  Quanto maior a diversidade de espécies, mais equilibrados podem
+  ser os ecossistemas.
+ </p>
+</article>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FAUNA E FLORA -->
+
+<section id="fauna">
+
+<div class="container">
+
+<span class="tag">BIODIVERSIDADE</span>
+
+<h2>Fauna e flora: uma rede de vida</h2>
+
+<p class="lead">
+ Animais e plantas dependem uns dos outros. Quando uma espécie
+ desaparece, todo o ecossistema pode ser afetado.
+</p>
+
+<div class="species">
+
+<article class="animal animal-featured">
+<div class="species-visual visual-harpia" aria-hidden="true">
+ <span>🦅</span>
+ <span class="harpy-label">ESPÉCIE EM DESTAQUE</span>
+</div>
+<div>
+ <small>FAUNA · FLORESTAS TROPICAIS</small>
+ <h3>Harpia, o gavião-real</h3>
+ <p class="scientific-name"><i>Harpia harpyja</i></p>
+ <p>
+  Uma das maiores aves de rapina das Américas. Para sobreviver,
+  depende de grandes áreas de floresta preservada.
+ </p>
+</div>
+</article>
+
+<article class="animal">
+<div class="species-visual visual-jaguar" aria-hidden="true"><span>🐆</span></div>
+<div>
+<small>FAUNA · BRASIL</small>
+<h3>Onça-pintada</h3>
+<p>
+ Predadora importante para o equilíbrio das cadeias alimentares.
+</p>
+</div>
+</article>
+
+<article class="animal">
+<div class="species-visual visual-mico" aria-hidden="true"><span>🐒</span></div>
+<div>
+<small>FAUNA · MATA ATLÂNTICA</small>
+<h3>Mico-leão-dourado</h3>
+<p>
+ Uma espécie da Mata Atlântica que depende da preservação da floresta.
+</p>
+</div>
+</article>
+
+<article class="animal">
+<div class="species-visual visual-arara" aria-hidden="true"><span>🦜</span></div>
+<div>
+<small>FAUNA · BRASIL</small>
+<h3>Arara-azul</h3>
+<p>
+ A conservação de seu habitat é fundamental para sua sobrevivência.
+</p>
+</div>
+</article>
+
+<article class="animal">
+<div class="species-visual visual-tamandua" aria-hidden="true"><span>🐜</span></div>
+<div>
+<small>FAUNA · BRASIL</small>
+<h3>Tamanduá-bandeira</h3>
+<p>
+ Uma espécie que contribui para o equilíbrio dos ecossistemas.
+</p>
+</div>
+</article>
+
+<article class="animal">
+<div class="species-visual visual-palmito" aria-hidden="true"><span>🌴</span></div>
+<div>
+<small>FLORA · MATA ATLÂNTICA</small>
+<h3>Palmito-juçara</h3>
+<p>
+  Árvore nativa importante para a floresta e fonte de alimento para a fauna.
+</p>
+</div>
+</article>
+
+<article class="animal">
+<div class="species-visual visual-ipe" aria-hidden="true"><span>🌼</span></div>
+<div>
+<small>FLORA · BRASIL</small>
+<h3>Ipê-amarelo</h3>
+<p>
+  Árvore brasileira conhecida pela floração marcante e valorizada em áreas verdes.
+</p>
+</div>
+</article>
+
+</div>
+
+<p class="species-note">
+ Exemplos de espécies brasileiras: cada uma ocupa regiões e habitats próprios;
+ nem todas ocorrem em Ribeirão Pires.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- AMEAÇAS -->
+
+<section id="ameacas">
+
+<div class="container">
+
+<span class="tag">CONSCIENTIZAÇÃO</span>
+
+<h2>O que ameaça a vida terrestre?</h2>
+
+<p class="lead">
+ Muitas ações humanas podem causar impactos negativos na fauna,
+ na flora e nos ambientes naturais.
+</p>
+
+<div class="grid">
+
+<article class="card">
+ <div class="icon">🪓</div>
+ <h3>Desmatamento</h3>
+ <p>
+  A retirada da vegetação destrói habitats e reduz o espaço
+  disponível para diversas espécies.
+ </p>
+</article>
+
+<article class="card">
+ <div class="icon">🔥</div>
+ <h3>Queimadas</h3>
+ <p>
+  Incêndios podem destruir áreas naturais e prejudicar animais,
+  plantas e o solo.
+ </p>
+</article>
+
+<article class="card">
+ <div class="icon">🏭</div>
+ <h3>Poluição</h3>
+ <p>
+  Resíduos e contaminantes podem afetar o solo, a água,
+  os animais e a vegetação.
+ </p>
+</article>
+
+<article class="card">
+ <div class="icon">🚫</div>
+ <h3>Caça e tráfico</h3>
+ <p>
+  A retirada ilegal de animais da natureza ameaça espécies
+  e desequilibra os ecossistemas.
+ </p>
+</article>
+
+<article class="card">
+ <div class="icon">🌱</div>
+ <h3>Perda de vegetação</h3>
+ <p>
+  A redução das áreas verdes diminui a quantidade de habitats
+  disponíveis para a fauna.
+ </p>
+</article>
+
+<article class="card">
+ <div class="icon">⚠️</div>
+ <h3>Espécies invasoras</h3>
+ <p>
+  Espécies introduzidas em ambientes onde não ocorrem naturalmente
+  podem prejudicar espécies nativas.
+ </p>
+</article>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- RIBEIRÃO PIRES -->
+
+<section id="cidade">
+
+<div class="container">
+
+<span class="tag">NOSSA CIDADE</span>
+
+<h2>Ribeirão Pires e a natureza</h2>
+
+<div class="city">
+
+<div class="city-visual" role="img" aria-label="Ilustração de uma paisagem verde da Mata Atlântica">
+ <div class="city-visual-caption">
+  <strong>Natureza que merece cuidado</strong>
+  Ribeirão Pires faz parte de uma região ligada à Mata Atlântica.
+ </div>
+</div>
+
+<div class="box">
+
+<h3>Uma cidade cercada pela Mata Atlântica</h3>
+
+<p>
+ Ribeirão Pires está inserida em uma região com forte presença
+ de áreas verdes e remanescentes da Mata Atlântica.
+</p>
+
+<p style="margin-top:1rem">
+ Isso torna a preservação ambiental uma questão importante
+ para a qualidade de vida da população e para a proteção
+ da biodiversidade.
+</p>
+
+<ul>
+ <li>🌳 Preservar áreas verdes</li>
+ <li>💧 Proteger nascentes e recursos hídricos</li>
+ <li>🐦 Valorizar a fauna local</li>
+ <li>🌱 Incentivar o plantio e a recuperação de vegetação</li>
+ <li>♻️ Reduzir impactos ambientais</li>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- O QUE PODEMOS FAZER -->
+
+<section>
+
+<div class="container">
+
+<span class="tag">FAÇA PARTE</span>
+
+<h2>Como podemos ajudar?</h2>
+
+<p class="lead">
+ A preservação da natureza não depende apenas de grandes projetos.
+ Pequenas atitudes também podem contribuir para proteger a fauna e a flora.
+</p>
+
+<div class="grid">
+
+<article class="card">
+ <div class="icon">🌱</div>
+ <h3>Plante e preserve</h3>
+ <p>
+  Valorize árvores e plantas nativas e ajude a manter áreas verdes.
+ </p>
+</article>
+
+<article class="card">
+ <div class="icon">♻️</div>
+ <h3>Reduza o lixo</h3>
+ <p>
+  Descarte corretamente seus resíduos e reduza o desperdício.
+ </p>
+</article>
+
+<article class="card">
+ <div class="icon">🐦</div>
+ <h3>Respeite os animais</h3>
+ <p>
+  Não capture animais silvestres e não contribua com o tráfico de espécies.
+ </p>
+</article>
+
+<article class="card">
+ <div class="icon">📢</div>
+ <h3>Compartilhe informação</h3>
+ <p>
+  Conscientizar outras pessoas também é uma forma de proteger a natureza.
+ </p>
+</article>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CONCLUSÃO -->
+
+<section>
+
+<div class="container">
+
+<span class="tag">CONCLUSÃO</span>
+
+<h2>Uma cidade melhor também precisa de uma natureza saudável</h2>
+
+<p class="lead">
+ A ODS 15 mostra que proteger a vida terrestre não significa
+ apenas salvar animais ou plantar árvores. Significa preservar
+ os ecossistemas dos quais toda a sociedade depende.
+</p>
+
+<div class="box">
+
+<h3>🌎 A nossa mensagem</h3>
+
+<p>
+ Cuidar da fauna e da flora é cuidar do futuro.
+ Por meio da conscientização e de boas decisões,
+ podemos construir cidades que se desenvolvem sem deixar
+ a natureza para trás.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+<footer>
+
+<p>
+ Projeto educativo sobre os
+ <strong>Objetivos de Desenvolvimento Sustentável</strong>
+ · ODS 15 — Vida Terrestre
+</p>
+
+<p style="margin-top:.5rem">
+ Ribeirão Pires · Fauna · Flora · Sustentabilidade
+</p>
+
+<a class="footer-link" href="#inicio">Voltar ao início ↑</a>
+
+</footer>
+
+<script>
+const menuToggle = document.querySelector(".menu-toggle");
+const menuLinks = document.querySelector(".links");
+
+menuToggle.addEventListener("click", () => {
+  const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+  menuToggle.setAttribute("aria-expanded", String(!isOpen));
+  menuToggle.setAttribute("aria-label", isOpen ? "Abrir menu" : "Fechar menu");
+  menuToggle.textContent = isOpen ? "☰" : "×";
+  menuLinks.classList.toggle("is-open", !isOpen);
+});
+
+menuLinks.querySelectorAll("a").forEach((link) => {
+  link.addEventListener("click", () => {
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Abrir menu");
+    menuToggle.textContent = "☰";
+    menuLinks.classList.remove("is-open");
+  });
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Abrir menu");
+    menuToggle.textContent = "☰";
+    menuLinks.classList.remove("is-open");
+  }
+});
+</script>
+
+</body>
+</html>
